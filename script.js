@@ -34,6 +34,7 @@ $('#copyButton').click(() => {
 });
 
 $('form').on('submit', (e) => {
+  e.preventDefault();
   $('#foregroundEmojiError').hide();
   $('#backgroundEmojiError').hide();
   let message = $('#message').val();
