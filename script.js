@@ -1,7 +1,7 @@
 $('#foregroundEmojiError').hide();
 $('#backgroundEmojiError').hide();
 $('#messageError').hide();
-$('#result').hide();
+$('#resultArea').hide();
 
 $('#message').on('input', () => {
   $('#messageError').hide();
@@ -13,6 +13,24 @@ $('#foregroundEmoji').on('input', () => {
 
 $('#backgroundEmoji').on('input', () => {
   $('#backgroundEmojiError').hide();
+});
+
+function showTooltip() {
+  $('#copyButton').tooltip('hide').tooltip('show');
+}
+
+function hideTooltip() {
+  setTimeout(function () {
+    $('#copyButton').tooltip('hide');
+  }, 1000);
+}
+
+$('#copyButton').click(() => {
+  let message = $('#result').html();
+  message = message.replaceAll('<br>', '\n');
+  navigator.clipboard.writeText(message);
+  showTooltip();
+  hideTooltip();
 });
 
 $('form').on('submit', (e) => {
@@ -64,7 +82,7 @@ const textToEmoji = (message, foreground, background) => {
   let result = '';
 
   for (let i = 0; i < message.length; i++) {
-    if (!i) result += 'xxxxxx\n'.replaceAll('x', background);
+    if (!i) result += 'xxxxxx<br>'.replaceAll('x', background);
 
     let current = letters[message[i] === ' ' ? 'space' : message[i]];
     if (!current) continue;
@@ -76,13 +94,15 @@ const textToEmoji = (message, foreground, background) => {
     for (let j = 0; j < currentParts?.length; j++) {
       currentParts[j] = background + currentParts[j] + background;
     }
-    current = currentParts?.join('\n');
+    current = currentParts?.join('<br>');
 
-    current += '\n';
+    current += '<br>';
     result += current;
-    if (current) result += 'xxxxxx\n'.replaceAll('x', background);
+    if (current) result += 'xxxxxx<br>'.replaceAll('x', background);
   }
 
-  $('#result').val(result);
-  $('#result').show();
+  $('#result').html(result);
+  $('#resultArea').show();
+
+  return result;
 };

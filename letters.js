@@ -14,11 +14,11 @@ x...
 x...
 x...
 xxxx`,
-  d: `xxx
+  d: `xxx.
 x..x
 x..x
 x..x
-xxx`,
+xxx.`,
   e: `xxxx
 x...
 xxxx
@@ -73,14 +73,12 @@ x..x`,
 x..x
 x..x
 x..x
-xxxx
-`,
+xxxx`,
   p: `xxxx
 x..x
 xxxx
 x...
-x...
-`,
+x...`,
   q: `xxxx
 x..x
 x..x
@@ -100,8 +98,7 @@ xxxx`,
 .x..
 .x..
 .x..
-.x..
-`,
+.x..`,
   u: `x..x
 x..x
 x..x
