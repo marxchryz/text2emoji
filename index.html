@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="favicon.png">
+    <meta charset="UTF-8">
+    <title>Text2Emoji</title>
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- Begin emoji-picker Stylesheets -->
+    <link href="../lib/css/emoji.css" rel="stylesheet">
+    <!-- End emoji-picker Stylesheets -->
+  </head>
+
+  <body class="container my-5">
+    <div class="mb-4 text-center">
+      <h1 class="display-3">Text<span style="color: #4267B2">2</span>Emoji</h1>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-10">
+          <form action="#" class="mb-3" accept-charset="UTF-8">
+            <div class="form-group mb-3">
+              <label for="message">Your message:</label>
+              <input type="text" class="form-control" id="message">
+              <small class="text-danger display-none" id="messageError">Please type your message</small>
+            </div>
+            <div class="form-group emoji-picker-container">
+              <label for="foregroundEmoji">Select first emoji:</label>
+              <input type="text" class="form-control" id="foregroundEmoji" aria-describedby="foregroundEmojiHelp" data-emojiable="true" minlength="1" maxlength="1">
+              <small id="foregroundEmojiHelp" class="form-text text-muted">This will be used for the letters</small>
+              <br>
+              <small class="text-danger" id="foregroundEmojiError">Please select 1 emoji</small>
+            </div>
+            <div class="form-group emoji-picker-container my-3">
+              <label for="backgroundEmoji">Select second emoji:</label>
+              <input type="text" class="form-control" id="backgroundEmoji" aria-describedby="backgroundEmojiHelp" data-emojiable="true" minlength="1" maxlength="1">
+              <small id="backgroundEmojiHelp" class="form-text text-muted">This will be used as the background</small>
+              <br>
+              <small class="text-danger" id="backgroundEmojiError">Please select 1 emoji</small>
+            </div>
+            <button type="submit" class="w-100 btn btn-outline-primary">Generate</button>
+          </form>
+          <textarea id="result" name="" class="form-control" rows="10" readonly></textarea>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <!-- Begin emoji-picker JavaScript -->
+    <script src="../lib/js/config.js"></script>
+    <script src="../lib/js/util.js"></script>
+    <script src="../lib/js/jquery.emojiarea.js"></script>
+    <script src="../lib/js/emoji-picker.js"></script>
+    <!-- End emoji-picker JavaScript -->
+
+    <script>
+      $(function() {
+        window.emojiPicker = new EmojiPicker({
+          emojiable_selector: '[data-emojiable=true]',
+          assetsPath: '../lib/img/',
+          popupButtonClasses: 'fa fa-smile-o'
+        });
+        window.emojiPicker.discover();
+      });
+    </script>
+    <script src="./letters.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
+
